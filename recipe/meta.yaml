@@ -1,0 +1,50 @@
+{% set name = "pytimeparse2" %}
+{% set version = "1.7.1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: 98668cdcba4890e1789e432e8ea0059ccf72402f13f5d52be15bdfaeb3a8b253
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  skip: true  # [py<36]
+
+requirements:
+  host:
+    - pip
+    - python
+    - wheel
+    - setuptools
+  run:
+    - python
+    - humanize
+    - query-cache-protobuf
+    - typing_extensions >=4.0.0
+
+test:
+  imports:
+    - pytimeparse2
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/onegreyonewhite/pytimeparse2
+  summary: Time expression parser.
+  license: MIT
+  license_family: MIT
+  license_file: PKG-INFO
+  description: |
+    This is a pytimeparse based project with the aim of optimizing functionality and providing stable support.
+  doc_url: https://github.com/onegreyonewhite/pytimeparse2
+  dev_url: https://github.com/onegreyonewhite/pytimeparse2
+
+extra:
+  recipe-maintainers:
+    - Andrii-Osipov
