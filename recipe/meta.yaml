@@ -10,7 +10,7 @@ source:
   sha256: 98668cdcba4890e1789e432e8ea0059ccf72402f13f5d52be15bdfaeb3a8b253
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<36]
 
@@ -22,9 +22,8 @@ requirements:
     - setuptools
   run:
     - python
-    - humanize
-    - query-cache-protobuf
-    - typing_extensions >=4.0.0
+  run_constrained:
+    - python-dateutil >=2.8.2,<2.9.0
 
 test:
   imports:
